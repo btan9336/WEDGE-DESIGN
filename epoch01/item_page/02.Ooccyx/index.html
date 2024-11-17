@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEDGE - Coccyx</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.typekit.net/exy5dcs.css">
+  <link rel="icon" type="image/png" href="/fonts/favicon.svg">
+  <script src="scripts.js"></script>
+</head>
+
+
+  <header>
+    <div class="logo">
+        <a href="/index.html">
+            <img src="/fonts/LOGO.svg" alt="Logo" class="svg-logo">
+          </a>
+    </div>
+  <!-- Sandwich Icon -->
+  <div class="menu-icon" onclick="toggleMenu()">
+    <img class="default-icon" src="/fonts/nav_default.svg" alt="Menu Icon">
+    <img class="hover-icon" src="/fonts/nav.highlight.svg" alt="Menu Icon Hover">
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav id="nav-menu" class="hidden">
+    <a href="/epoch01/index.html">EPOCH 01</a>
+    <a href="/sandAsMaterial/index.html">SAND AS A MATERIAL</a>
+    <a href="/catalogue/index.html">CATALOGUE</a>
+    <a href="/gallery/index.html">GALLERY</a>
+    <a href="/contactPage/index.html">CONTACT</a>
+  </nav>
+  </header>
+
+  <div id="menu-overlay" class="overlay hidden" onclick="toggleMenu()"></div>
+  
+  <body>
+    <div class="container">
+      <div class="product-gallery">
+          <div class="image-slider">
+              <!-- Main Images -->
+              <img src="/epoch01/img_24C/3 legs/COCCYX - 5.png" alt="Slide 1" class="main-image" id="mainImage" data-index="0">
+              <img src="/epoch01/img_24C/3 legs/COCCYX - 1.png" alt="Slide 2" class="main-image" style="display:none;" data-index="1">
+              <img src="/epoch01/img_24C/3 legs/img1.PNG" alt="Slide 3" class="main-image" style="display:none;" data-index="2">
+              <img src="/epoch01/img_24C/3 legs/BLACK COLOR.png" alt="Slide 4" class="main-image" style="display:none;" data-index="3">
+              <img src="/epoch01/img_24C/3 legs/SAND COLOR.png" alt="Slide 5" class="main-image" style="display:none;" data-index="4">
+              
+              <!-- Dots -->
+              <div class="dots">
+                  <span class="dot" data-index="0"></span>
+                  <span class="dot" data-index="1"></span>
+                  <span class="dot" data-index="2"></span>
+              </div>
+          </div>
+      </div>
+
+<!-- Product Details on the Right -->
+<div class="product-details">
+  <h1 class="product-title">Coccyx</h1>
+  <h3 class="product-label">58CH12-1-Black</h3>
+
+  <div class="switch-buttons">
+    <button class="switch-btn" data-target="content-1" data-image="3"style="background-color: gray;"></button>
+    <button class="switch-btn" data-target="content-2" data-image="4"style="background-color: rgb(201, 187, 139);"></button>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Additional Product Information -->
+  <div class="product-info">
+    <div class="content" id="content-1">
+      <p><strong>Material:</strong></p>
+      <div class="details">
+        <span>Silica Sand</span>
+      </div>
+      <p><strong>Dimensions:</strong></p>
+      <div class="details">
+        <span>Sh 533</span>
+        <span>H 878</span>
+        <span>W 551</span>
+        <span>D 502</span>
+      </div>
+      <p><strong>Net Weight:</strong></p>
+      <div class="details">
+        <span>36.7 kg</span>
+      </div>
+      <p><strong>Trade Price:</strong></p>
+      <div class="details">
+        <span>EST. 500 GBP</span>
+      </div>
+    </div>
+
+    <div class="content hidden" id="content-2">
+      <p><strong>Material:</strong></p>
+      <div class="details">
+        <span>Synthetic Sand</span>
+      </div>
+      <p><strong>Dimensions:</strong></p>
+      <div class="details">
+        <span>Sh 533</span>
+        <span>H 878</span>
+        <span>W 551</span>
+        <span>D 502</span>
+      </div>
+      <p><strong>Net Weight:</strong></p>
+      <div class="details">
+        <span>36.7 kg</span>
+      </div>
+      <p><strong>Trade Price:</strong></p>
+      <div class="details">
+        <span>EST. 4000 GBP</span>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Step 1: Highlight the first button by default
+  const defaultButton = document.querySelector('.switch-btn[data-target="content-1"]');
+  if (defaultButton) {
+    defaultButton.classList.add('highlight');
+  }
+
+  // Step 2: Show the first content by default
+  const defaultContent = document.getElementById('content-1');
+  if (defaultContent) {
+    defaultContent.classList.remove('hidden');
+    defaultContent.classList.add('visible');
+  }
+
+  // Reference the images for switching
+  const images = document.querySelectorAll('.main-image');
+
+  // Function to show an image by its data-index
+  function showImageByIndex(index) {
+    images.forEach((image, i) => {
+      if (parseInt(image.getAttribute('data-index')) === index) {
+        image.style.display = 'block';
+        image.classList.add('fade-in');
+        image.classList.remove('fade-out');
+      } else {
+        image.style.display = 'none';
+        image.classList.remove('fade-in');
+        image.classList.add('fade-out');
+      }
+    });
+  }
+
+  // Button switching logic
+  document.querySelectorAll('.switch-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const targetId = this.getAttribute('data-target'); // Get the target content ID
+      const targetImageIndex = parseInt(this.getAttribute('data-image')); // Get target image index
+
+      // Remove highlight from all buttons
+      document.querySelectorAll('.switch-btn').forEach(btn => {
+        btn.classList.remove('highlight');
+      });
+
+      // Highlight the clicked button
+      this.classList.add('highlight');
+
+      // Hide all contents with fade-out effect
+      document.querySelectorAll('.content').forEach(content => {
+        content.classList.remove('visible');
+        content.classList.add('hidden');
+      });
+
+      // Show the targeted content with fade-in effect
+      const targetContent = document.getElementById(targetId);
+      if (targetContent) {
+        setTimeout(() => {
+          targetContent.classList.remove('hidden');
+          setTimeout(() => {
+            targetContent.classList.add('visible');
+          }, 0); // Small delay to ensure smooth transition
+        }, 200); // Delay for a smoother transition
+      }
+
+      // Switch image based on the button
+      if (!isNaN(targetImageIndex)) {
+        showImageByIndex(targetImageIndex);
+      }
+    });
+  });
+});
+
+document.querySelectorAll('.switch-btn').forEach((button) => {
+    button.addEventListener('click', function () {
+        const targetContent = this.getAttribute('data-target'); // Get the target content
+        const productLabel = document.querySelector('.product-label'); // Get the label to update
+
+        if (targetContent === 'content-2') {
+            // Change the text to "58CH12-1-Beige" when content-2 button is clicked
+            productLabel.textContent = '58CH12-1-Beige';
+        } else if (targetContent === 'content-1') {
+            // Change the text back to "58CH12-1-Black" when content-1 button is clicked
+            productLabel.textContent = '58CH12-1-Black';
+        }
+    });
+});
+</script>
+</body>
+
+
+</html>
+
+
+<footer id="custom-footer" style="font-family: 'Hevenaca', sans-serif; text-align: center; padding: 20px; position: fixed; bottom: 0; left: 0; width: 100%; transform-origin: bottom center; background-color: rgb(0, 0, 0);">
+  <hr class="custom-footer-divider" style="border: none; border-top: 0.1px solid #3b3b3b; margin: 10px auto; width: 90%;">
+  <div class="custom-footer-content" style="font-size: 8px; color: #666;">
+    <span>United Kingdom</span>
+    <span style="display: block; margin-top: 5px;">Copyright © 2024 WEDGE DESIGN LTD. All rights reserved. Web Designed by 
+      <a href="https://www.instagram.com/project_editable_zone/" target="_blank" style="color: #666; text-decoration: none; font-weight: bold;" class="footer-link">
+        Bowen Tan
+      </a>
+    </span>
+  </div>
+
+  <!-- Inline Media Query (iPhone) -->
+  <style>
+    @media (max-width: 1100px) {
+      #custom-footer {
+        position: relative !important; /* Changes position to relative */
+        transform: scale(1) !important; /* Resets the scale */
+        bottom: auto !important; /* Ensures footer isn't fixed at the bottom */
+      }
+    }
+  </style>
+</footer>
