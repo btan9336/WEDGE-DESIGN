@@ -348,7 +348,7 @@ h2 {
         align-items: flex-start; /* Align content vertically to the top */
         text-align: left; /* Ensure text is aligned left */
         transition: opacity 0.15s ease-in-out; /* Smooth fade effect */
-        top: 76%; /* Adjust as necessary */
+        top: 70%; /* Adjust as necessary */
         left: 4%; /* Move it closer to the left */
     
     }
@@ -357,7 +357,7 @@ h2 {
         font-weight: 100px;
         text-decoration: none;
         position: fixed;
-        top: 75%; /* Adjust as necessary */
+        top: 68%; /* Adjust as necessary */
         left: 7.5%; /* Move it closer to the left */
         font-size: 16px;
         color: rgb(8, 0, 255);
