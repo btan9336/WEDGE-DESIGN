@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEDGE DESIGN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/exy5dcs.css">
+    <link rel="icon" type="image/png" href="./fonts/favicon.svg">
+</head>
+
+<header>
+  <!-- Sandwich Icon -->
+  <div class="menu-icon" onclick="toggleMenu()">
+  </div>
+
+<!-- Navigation Menu -->
+<nav id="nav-menu" class="blurred-menu">
+    <a href="/epoch01/index.html">EPOCH 01</a>
+    <a href="/sandAsMaterial/index.html">SAND AS A MATERIAL</a>
+    <a href="/catalogue/index.html">CATALOGUE</a>
+    <a href="/gallery/index.html">GALLERY</a>
+    <a href="/contactPage/index.html">CONTACT</a>
+  </nav>
+  </header>
+
+  <!-- Background Overlay -->
+  <div id="menu-overlay" class="overlay hidden"></div>
+  
+<body>
+    <!-- Gradient overlay layer -->
+    <div class="gradient-overlay"></div>
+
+    <div class="background">
+        <div class="scrolling-background">
+            <img src="./img_scrollBackground/img1.PNG" alt="Background 1">
+            <img src="./img_scrollBackground/img2.PNG" alt="Background 2">
+            <img src="./img_scrollBackground/img3.PNG" alt="Background 3">
+            <img src="./img_scrollBackground/img4.PNG" alt="Background 4">
+            <!-- Repeat the images for a smooth loop -->
+            <img src="./img_scrollBackground/img1.PNG" alt="Background 1">
+            <img src="./img_scrollBackground/img2.PNG" alt="Background 2">
+            <img src="./img_scrollBackground/img3.PNG" alt="Background 3">
+            <img src="./img_scrollBackground/img4.PNG" alt="Background 4">
+        </div>
+    </div>
+
+    <div class="container no-select">
+        <header>
+            <div class="logo">
+                <img src="./fonts/LOGO.svg" alt="Logo" class="svg-logo">
+            </div>
+            <div class="corner-info">
+              In differential geometry, the Grassmann
+              product, represented by a wedge, constructs
+              higher-dimensional objects by adding existing
+              dimensions. 
+          
+              <br><br>
+          
+              At WEDGE, we embrace this concept
+              as our guiding philosophy, pioneering a new era in
+              interior design by introducing new technology into
+              our design and production process.
+          </div>
+        </header>
+
+        <main>
+            <!-- Your main content here -->
+        </main>
+    </div>
+
+    <a href="#" class="explore-link" id="explore-link">Interact to Explore</a>
+    <!-- JavaScript includes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        function loadScript(url) {
+          const script = document.createElement('script');
+          script.src = url;
+          script.type = 'text/javascript';
+          script.async = true; // Optional: load asynchronously
+          document.head.appendChild(script);
+        }
+    
+        // Load the appropriate script based on screen width
+        if (window.innerWidth <= 1100) {
+          loadScript('scripts-small.js'); // Replace with your smaller-screen script
+        } else {
+          loadScript('scripts.js'); // Replace with your default script
+        }
+    
+        // Optionally, reload script on window resize if needed
+        window.addEventListener('resize', () => {
+          // Prevent duplicate script loading
+          document.head.querySelectorAll('script').forEach(script => script.remove());
+    
+          if (window.innerWidth <= 1100) {
+            loadScript('scripts-small.js');
+          } else {
+            loadScript('scripts.js');
+          }
+        });
+      </script>
+  
+    <!-- JavaScript for Background Scrolling -->
+    <script>
+        const scrollingBackground = document.querySelector('.scrolling-background');
+        let scrollPosition = 0;
+
+        function scrollBackground() {
+            scrollPosition -= 0.5; // Control speed of scroll
+            scrollingBackground.style.transform = `translateX(${scrollPosition}px)`;
+            
+            if (scrollPosition <= -window.innerWidth * 8) {
+                scrollPosition = 0; // Reset scroll back to start
+            }
+
+            requestAnimationFrame(scrollBackground);
+        }
+
+        scrollBackground();
+    </script>
+    
+</body>
+</html>
+

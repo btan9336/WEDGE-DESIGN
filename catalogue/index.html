@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEDGE - Catalogue</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.typekit.net/exy5dcs.css">
+  <link rel="icon" type="image/png" href="../fonts/favicon.svg">
+  <script src="scripts.js"></script>
+</head>
+
+
+<header>
+  <div class="logo">
+      <a href="/index.html">
+          <img src="/fonts/LOGO.svg" alt="Logo" class="svg-logo">
+        </a>
+  </div>
+<!-- Sandwich Icon -->
+<div class="menu-icon" onclick="toggleMenu()">
+  <img class="default-icon" src="/fonts/nav_default.svg" alt="Menu Icon">
+  <img class="hover-icon" src="/fonts/nav.highlight.svg" alt="Menu Icon Hover">
+</div>
+
+<!-- Navigation Menu -->
+<nav id="nav-menu" class="hidden">
+  <a href="/epoch01/index.html">EPOCH 01</a>
+  <a href="/sandAsMaterial/index.html">SAND AS A MATERIAL</a>
+  <a href="/catalogue/index.html">CATALOGUE</a>
+  <a href="/gallery/index.html">GALLERY</a>
+  <a href="/contactPage/index.html">CONTACT</a>
+</nav>
+</header>
+<body>
+<!-- Background Overlay -->
+<div id="menu-overlay" class="overlay hidden" onclick="toggleMenu()"></div>
+
+
+  <section class="background-section">
+    <div class="center-content">
+      <h1>The Catalogue</h1>
+      <a href="./WEDGE CATALOGUE.pdf" download class="download-button">Download PDF</a>
+    </div>
+  </section>
+</body>
+</html>
+
+<footer id="custom-footer" style="font-family: 'Hevenaca', sans-serif; text-align: center; padding: 20px; position: fixed; bottom: 0; left: 0; width: 100%; transform-origin: bottom center;">
+  <hr class="custom-footer-divider" style="border: none; border-top: 0.1px solid #383838; margin: 10px auto; width: 90%;">
+  <div class="custom-footer-content" style="font-size: 10px; color: #666;">
+    <span>United Kingdom</span>
+    <span style="display: block; margin-top: 5px;">Copyright © 2024 WEDGE DESIGN LTD. All rights reserved. Web Designed by 
+      <a href="https://www.instagram.com/project_editable_zone/" target="_blank" style="color: #666; text-decoration: none; font-weight: bold;" class="footer-link">
+        Bowen Tan
+      </a>
+    </span>
+  </div>
+
+  <!-- Inline Media Query (iPhone) -->
+  <style>
+    @media (max-width: 1100px) {
+      #custom-footer {
+        position: fixed !important; /* Changes position to relative */
+        transform: scale(1) !important; /* Resets the scale */
+        bottom: 0px !important; /* Ensures footer isn't fixed at the bottom */
+      }
+    }
+  </style>
+</footer>

@@ -1,0 +1,411 @@
+html, body {
+    overflow: hidden;  /* Disable horizontal scroll */
+  }
+
+  /* Ensure the 3D scene does not affect other content */
+canvas {
+    position: fixed; /* Fix the canvas to the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Make sure the 3D canvas is behind other content */
+  }
+  
+  nav a {
+    font-family: 'dazzle-unicase', sans-serif;
+    font-size: 1px;
+    display: inline-block;
+    padding: 29px 15px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #000DFF; /* Adds a simple hover effect */
+  }
+  
+/* General Styles */
+body {
+    margin: 0;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    background-color: #fff;
+}
+
+/* Fade-in animation for the body */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Container Layout */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    top: 10px;
+    z-index: -1;
+    height: 100vh;
+    user-select: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 4%;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+}
+
+
+.svg-logo {
+    width: 80pt; /* Adjust this value to match your desired size */
+    height: auto;
+    display: block;
+  }
+
+
+h1 {
+    font-family: 'dazzle-unicase', sans-serif;
+    font-size: 170px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+h2 {
+    font-family: 'dazzle-unicase', sans-serif;
+    font-size: 42px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.footer-text {
+    font-size: 16px;
+    color: #555;
+    padding-bottom: 40px;
+}
+
+.explore-link {
+    font-family: 'dazzle-unicase', sans-serif;
+    font-weight: 100px;
+    text-decoration: none;
+    position: fixed;
+    top: 75%; /* Adjust as necessary */
+    left: 5%; /* Move it closer to the left */
+    font-size: 20px;
+    color: rgb(35, 31, 255);
+    text-align: left; /* Keep text aligned left */
+    opacity: 1;
+    transition: opacity 0.15s ease-in-out; /* Smooth fade effect */
+    z-index: 100; /* Ensure it stays on top of other content */
+}
+
+.fade-out {
+    opacity: 0;
+}
+.fade-in {
+    opacity: 1;
+}
+
+.corner-info {
+    font-family: 'PPNeueMontreal-Book', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    position: absolute;
+    top: 0; /* Align it to the top */
+    left: 0; /* Align it to the left */
+    width: 33.33%; /* Adjust width as necessary */
+    color: white;
+    z-index: 100;
+    padding: 20px; /* Adjust padding as necessary */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: flex-start; /* Align content vertically to the top */
+    text-align: left; /* Ensure text is aligned left */
+    transition: opacity 0.15s ease-in-out; /* Smooth fade effect */
+    top: 76%; /* Adjust as necessary */
+    left: 4%; /* Move it closer to the left */
+
+}
+
+
+.corner-info.fade-out {
+    opacity: 0;
+}
+
+.corner-info.fade-in {
+    opacity: 1;
+}
+
+/* Gradient Overlay Layer */
+.gradient-overlay {
+    position: fixed; /* Fixed to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65)); /* Gradient overlay */
+    z-index: -1; /* Ensure this is behind other content but above the background */
+    pointer-events: none; /* Ensure overlay doesn't block interactions */
+}
+
+/* Background Image Scrolling */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -2; /* Ensure background is behind everything */
+}
+
+.scrolling-background {
+    position: relative;
+    display: flex;
+    width: 800vw; /* 8 times the width of the viewport */
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    animation: moveBackground 400s linear infinite; /* Adjust scrolling speed */
+}
+
+/* Ensuring no gaps between images */
+.scrolling-background > div {
+    flex: 0 0 100vw; /* Each image container takes up 100% of the viewport width */
+    height: 100vh;
+    background-size: contain; /* Preserve the aspect ratio */
+    background-position: center;
+    background-repeat: repeat;
+    background-color: black; /* Fallback background color to fill gaps */
+}
+
+/* Specific backgrounds for each image */
+.scrolling-background .image1 { background: url('./img_scrollBackground/img7_1.PNG'); }
+.scrolling-background .image2 { background: url('./img_scrollBackground/img7_2.PNG'); }
+.scrolling-background .image3 { background: url('./img_scrollBackground/img7_3.jpg'); }
+.scrolling-background .image4 { background: url('./img_scrollBackground/img7_4.PNG'); }
+.scrolling-background .image5 { background: url('./img_scrollBackground/img7_5.PNG'); }
+.scrolling-background .image6 { background: url('./img_scrollBackground/img7_6.PNG'); }
+.scrolling-background .image7 { background: url('./img_scrollBackground/img7_7.PNG'); }
+.scrolling-background .image8 { background: url('./img_scrollBackground/img7_8.JPG'); }
+
+/* Keyframes for background movement */
+@keyframes moveBackground {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100vw * 7); /* Move by the width of all 7 images */
+    }
+}
+
+
+/* Font Faces */
+@font-face {
+    font-family: 'PPNeueMontreal-Book';
+    src: url('fonts/PPNeueMontreal-Book.woff') format('woff');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PPNeueMontreal-Bold';
+    src: url('fonts/PPNeueMontreal-Bold.woff') format('woff');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PPNeueMontreal-Italic';
+    src: url('fonts/PPNeueMontreal-Italic.woff') format('woff');
+    font-weight: 400; /* Regular Italic */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PPNeueMontreal-Medium';
+    src: url('fonts/PPNeueMontreal-Medium.woff') format('woff');
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PPNeueMontreal-SemiBoldItalic';
+    src: url('fonts/PPNeueMontreal-SemiBolditalic.woff') format('woff');
+    font-weight: 600; /* SemiBold */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PPNeueMontreal-Thin';
+    src: url('fonts/PPNeueMontreal-Thin.woff') format('woff');
+    font-weight: 100; /* Thin */
+    font-style: normal;
+}
+
+
+/* Smooth Scrolling */
+@keyframes moveBackground {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-700vw); } /* Scrolls across all 8 images */
+}
+
+/* Book */
+@font-face {
+    font-family: 'PPNeueMontreal-Book';
+    src: url('fonts/PPNeueMontreal-Book.woff') format('woff');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'PPNeueMontreal-Bold';
+    src: url('fonts/PPNeueMontreal-Bold.woff') format('woff');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
+
+/* Italic */
+@font-face {
+    font-family: 'PPNeueMontreal-Italic';
+    src: url('fonts/PPNeueMontreal-Italic.woff') format('woff');
+    font-weight: 400; /* Regular Italic */
+    font-style: italic;
+}
+
+/* Medium */
+@font-face {
+    font-family: 'PPNeueMontreal-Medium';
+    src: url('fonts/PPNeueMontreal-Medium.woff') format('woff');
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
+/* SemiBold Italic */
+@font-face {
+    font-family: 'PPNeueMontreal-SemiBoldItalic';
+    src: url('fonts/PPNeueMontreal-SemiBolditalic.woff') format('woff');
+    font-weight: 600; /* SemiBold */
+    font-style: italic;
+}
+
+/* Thin */
+@font-face {
+    font-family: 'PPNeueMontreal-Thin';
+    src: url('fonts/PPNeueMontreal-Thin.woff') format('woff');
+    font-weight: 100; /* Thin */
+    font-style: normal;
+}
+
+
+
+
+
+@media (max-width: 1100px) {
+
+    html {
+        overflow: hidden; 
+      }
+
+
+    .svg-logo {
+        width: 65pt; /* Adjust this value to match your desired size */
+        height: 25px;
+        display: block;
+      }
+
+      .corner-info {
+        font-family: 'PPNeueMontreal-Book', sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        position: absolute;
+        top: 0; /* Align it to the top */
+        left: 0; /* Align it to the left */
+        width: 85%; /* Adjust width as necessary */
+        color: white;
+        z-index: 100;
+        padding: 15px; /* Adjust padding as necessary */
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-start; /* Align content to the left */
+        align-items: flex-start; /* Align content vertically to the top */
+        text-align: left; /* Ensure text is aligned left */
+        transition: opacity 0.15s ease-in-out; /* Smooth fade effect */
+        top: 76%; /* Adjust as necessary */
+        left: 4%; /* Move it closer to the left */
+    
+    }
+    .explore-link {
+        font-family: 'dazzle-unicase', sans-serif;
+        font-weight: 100px;
+        text-decoration: none;
+        position: fixed;
+        top: 75%; /* Adjust as necessary */
+        left: 7.5%; /* Move it closer to the left */
+        font-size: 16px;
+        color: rgb(8, 0, 255);
+        text-align: left; /* Keep text aligned left */
+        opacity: 1;
+        transition: opacity 0.15s ease-in-out; /* Smooth fade effect */
+        z-index: 100; /* Ensure it stays on top of other content */
+    }
+    .scrolling-background {
+        position: relative;
+        display: flex;
+        width: 800vw; /* 8 times the width of the viewport */
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        animation: moveBackground 200s linear infinite; /* Adjust scrolling speed */
+    }    
+
+    nav {
+        display: flex;
+        flex-direction: column; /* Stack links vertically */
+        align-items: left; /* Center the links horizontally */
+        justify-content: center; /* Center the links vertically */
+        height: 70vh; /* Take full height of the viewport */
+        width: 200px;
+        padding: 10px; /* Padding inside the box */
+        padding-right: 240px;
+      }
+    
+      /* Styling the individual links inside the box */
+/* Default nav link styles */
+nav a {
+    display: block; /* Make each link a block element */
+    border-radius: 14px; /* Rounded corners */
+    backdrop-filter: blur(3px); /* Adds blur effect to the background */
+    padding: 10px 0; /* Adjust padding for vertical alignment */
+    font-size: 28px; /* Optionally increase font size for readability */
+    text-align: cen; /* Center the text inside the link */
+    width: 100%; /* Ensure each link takes the full width of the nav box */
+    margin: 5px ; /* Add vertical space between each box */
+    position: relative; /* Necessary for absolute positioning of pseudo-element */
+    overflow: hidden; /* Ensure triangle stays within bounds */
+    transition: none; /* Remove the background hover transition */
+}
+  canvas {
+    position:fixed; /* Fix the canvas to the screen */
+  }
+  }
+
+
+
