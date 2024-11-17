@@ -1,0 +1,389 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;  /* Disable horizontal scroll */
+  overflow-y: auto;
+}
+
+/* Change the vertical scrollbar itself */
+::-webkit-scrollbar {
+  width: 20px;  /* Set the width of the scrollbar */
+}
+
+/* Style the vertical scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: repeating-linear-gradient(
+    to bottom, 
+    black 0%, 
+    #ffffff5c 100%,  /* Decrease this to make the blue ticks denser */
+    transparent 5%, 
+    transparent 100% /* Reduce the transparent space for more density */
+  );  
+  border-radius: 10px;  /* Round the corners of the thumb */
+}
+
+/* Thumb hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;  /* Darker thumb color on hover */
+}
+
+/* ^ ^ ^ BASIC FUNCTION APPLY FOR ALL PAGE ^ ^ ^ */
+
+
+
+body {
+  font-family: 'dazzle-unicase', sans-serif;
+  background-color: #000000; /* Dark background */
+  color: #f0f0f0; /* Light text */
+  text-align: center;
+  padding-top: 80px; /* Adds padding to prevent content from being hidden behind the fixed header */
+}
+
+header {
+  position: fixed; /* Fix the header on top */
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Transparent dark background */
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000; /* Ensures header is always on top */
+}
+
+.svg-logo {
+  width: 80pt; /* Adjust this value to match your desired size */
+  height: auto;
+  display: block;
+}
+
+/* Menu Icon */
+.menu-icon {
+  display: inline-block;
+  position: relative;
+  width: 50px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+  cursor: pointer;
+  transform: rotate(30deg); /* Apply 20-degree rotation */
+}
+
+/* Default SVG icon (always visible) */
+.menu-icon .default-icon {
+  width: 150%;
+  height: 150%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Bottom layer */
+}
+
+/* Hover SVG icon (hidden by default) */
+.menu-icon .hover-icon {
+  width: 150%;
+  height: 150%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; /* Top layer */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+/* Show hover icon when hovering over the menu icon */
+.menu-icon:hover .hover-icon {
+  opacity: 1;
+}
+
+.menu-icon:hover .default-icon {
+  opacity: 0; /* Optionally hide the default icon on hover */
+}
+
+/* Navigation Menu */
+nav {
+  display: inline-block;
+  position: absolute;
+  right: 200px;
+  height: 50px;
+  width: 0;
+  white-space: nowrap; /* Keeps the links in a single row */
+  overflow: hidden;
+  transform: translateX(100%); /* Initially off-screen to the right */
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+nav.show {
+  width: auto;
+  transform: translateX(0); /* Bring the nav into view from right to left */
+  opacity: 1;
+  visibility: visible;
+}
+
+nav.hidden {
+  z-index: 200;
+}
+
+nav.hide-right {
+  /* Animate the disappearance from left to right */
+  transform: translateX(100%); /* Moves the nav out of view to the right */
+  opacity: 0;
+  visibility: hidden;
+}
+
+nav a {
+  font-family: 'dazzle-unicase', sans-serif;
+  font-size: large;
+  display: inline-block;
+  padding: 29px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #000DFF; /* Adds a simple hover effect */
+}
+
+nav {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+header {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.813) 100%); /* Gradient from transparent to semi-transparent */
+  justify-content: space-between;
+  padding: 2% 4%;
+}
+
+/* Fade-in effect */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+      /* Basic styling */
+        .gallery-container {
+          position: relative;
+          width: 100vw;
+          min-height: 200vh;
+      }
+
+/* Gallery item styling */
+.gallery-item {
+  position: absolute;
+  width: 20vw;
+  height: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  opacity: 0; /* Start with 0 opacity */
+  transition: top 1.3s ease, left 1.3s ease; /* Smooth transition for movement */
+  animation: fadeIn 1s ease-in-out forwards, shiftItem 1.3s ease-in-out forwards, scaleFromRight 1.3s ease-in-out forwards; /* Apply animations */
+  top: 0;  /* Position to the top */
+  right: 0;  /* Position to the right */
+}
+
+.gallery-item, .text-box {
+  position: absolute;
+  cursor: grab;
+  transition: left 0.2s ease, top 0.2s ease; /* Smooth transition on drag end */
+}
+
+/* Add styles for grabbing cursor */
+.gallery-item:active, .text-box:active {
+  cursor: grabbing;
+}
+/* Image and caption styling */
+.allery-item img {
+  width: 100%;
+  height: auto;
+}
+
+.text-box {
+  font-family: 'PPNeueMontreal-Book', sans-serif;
+  border: 1px solid rgba(111, 111, 111, 0.325);
+  position: absolute;
+  width: 20vw;
+  height: auto; /* Allow dynamic height based on text content */
+  min-height: 5vw; /* Ensure there is a minimum height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: grab;
+  margin-top: 5px;
+  opacity: 0; /* Start with 0 opacity */
+  transition: top 1.3s ease, left 1.3s ease; /* Smooth transition for text box movement */
+  animation: fadeIn 1s ease-in-out forwards, shiftItem 1.3s ease-in-out forwards, scaleFromRight 1.3s ease-in-out forwards; /* Apply animations */
+  padding: 10px;  /* Add padding to give space for the text */
+  word-wrap: break-word;  /* Ensure text wraps within the box */
+  white-space: normal;    /* Allow text to wrap naturally */
+}
+
+/* Styling for text inside the box */
+.text-box p {
+  margin: 0;
+}
+
+/* Keyframes for fade-in effect */
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+/* Keyframes for shifting items to random positions */
+@keyframes shiftItem {
+  0% {
+      top: 0;
+      left: 0;
+  }
+  100% {
+      top: var(--random-top);
+      left: var(--random-left);
+  }
+}
+
+
+
+
+
+@media (max-width: 1100px) {
+
+  ::-webkit-scrollbar {
+    width: 2px;  /* Set the width of the scrollbar */
+  }
+  
+  .svg-logo {
+    width: 65pt; /* Adjust this value to match your desired size */
+    height: 65px;
+    display: block;
+  }
+  
+  /* Overlay background */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(21, 21, 21, 0.179); /* Dark semi-transparent background */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s ease;
+    z-index: 9; /* Position behind the nav */
+  }
+
+  /* Show overlay when menu is open */
+  .overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 80%;
+    background-color: #ffffff05; /* Adjust as needed */
+    backdrop-filter: blur(3px); /* Adds blur effect to the background */
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: 'center';
+    padding-top: 150px;
+    z-index: 10; /* Position above the overlay */
+    border-top-left-radius: 10px; /* Rounded top-left corner */
+    border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+  }
+
+  /* Show menu when activated */
+  nav.show {
+    transform: translateX(0);
+  }
+
+  nav a {
+    font-weight: 400;
+    font-size: 15px;
+    padding: 10px;
+    padding-left: 20px;
+    margin: 10px 0;
+    color: #ffffff;
+    text-align: left;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #000DFF; /* Simple hover effect */
+  }
+
+  /* Menu Icon */
+  .menu-icon {
+    position: fixed;
+    right: 30px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 11; /* Ensure it's above the overlay */
+  }
+
+  .text-box {
+    font-family: 'PPNeueMontreal-Book', sans-serif;
+    border: 1px solid rgba(111, 111, 111, 0.325);
+    position: absolute;
+    width: 30vw;
+    height: auto; /* Allow dynamic height based on text content */
+    min-height: 5vw; /* Ensure there is a minimum height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: grab;
+    margin-top: 5px;
+    opacity: 0; /* Start with 0 opacity */
+    transition: top 1.3s ease, left 1.3s ease; /* Smooth transition for text box movement */
+    animation: fadeIn 1s ease-in-out forwards, shiftItem 1.3s ease-in-out forwards, scaleFromRight 1.3s ease-in-out forwards; /* Apply animations */
+    padding: 10px;  /* Add padding to give space for the text */
+    word-wrap: break-word;  /* Ensure text wraps within the box */
+    white-space: normal;    /* Allow text to wrap naturally */
+  }
+
+  
+}
+
+
+@font-face {
+  font-family: 'PPNeueMontreal-Book';
+  src: url('/fonts/PPNeueMontreal-Book.woff') format('woff');
+  font-weight: 100; /* Regular */
+  font-style: normal;
+}

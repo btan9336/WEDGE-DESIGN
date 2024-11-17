@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEDGE - Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.typekit.net/exy5dcs.css">
+  <link rel="icon" type="image/png" href="./fonts/favicon.svg">
+  <script src="scripts.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+        <a href="../index.html">
+            <img src="../fonts/LOGO.svg" alt="Logo" class="svg-logo">
+          </a>
+    </div>
+  <!-- Sandwich Icon -->
+  <div class="menu-icon" onclick="toggleMenu()">
+    <img class="default-icon" src="../fonts/nav_default.svg" alt="Menu Icon">
+    <img class="hover-icon" src="../fonts/nav.highlight.svg" alt="Menu Icon Hover">
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav id="nav-menu" class="hidden">
+    <a href="../epoch01/index.html">EPOCH 01</a>
+    <a href="../sandAsMaterial/index.html">SAND AS A MATERIAL</a>
+    <a href="../catalogue/index.html">CATALOGUE</a>
+    <a href="../gallery/index.html">GALLERY</a>
+    <a href="../contactPage/index.html">CONTACT</a>
+  </nav>
+  </header>
+</section>
+
+<!-- Background Overlay -->
+<div id="menu-overlay" class="overlay hidden" onclick="toggleMenu()"></div>
+
+<div class="gallery-container">
+  <!-- Gallery item 1 -->
+  <div class="gallery-item" id="item1">
+    <img src="./img/hero/SOLEUS - 9.png" alt="Look 4" width="1600">
+      <div class="text-box">
+          <p>Soleus - 
+            noun ANATOMY </p>
+      </div>
+  </div>
+
+  <!-- Gallery item 2 -->
+  <div class="gallery-item" id="item2">
+    <img src="./img/hero/1.png" alt="Look 2" width="1300">
+      <div class="text-box" id="dynamicTextBox">
+          <p>To understand the life of Muad’Dib, it is crucial to place him in his time under Emperor Shaddam IV and his true home, the desert planet Arrakis, despite his early years on Caladan.</p>
+      </div>
+  </div>
+
+  <!-- Gallery item 3 -->
+  <div class="gallery-item" id="item3">
+    <img src="./img/hero/COCCYX - 6.png" alt="Look 3" width="1000">
+      <div class="text-box">
+          <p>Coccyx -
+            noun ANATOMY</p>
+      </div>
+  </div>
+
+  <!-- Gallery item 4 -->
+  <div class="gallery-item" id="item4">
+    <img src="./img/hero/SAUNDEYE.png" alt="Look 4" width="600">
+      <div class="text-box">
+          <p>Saundeye -
+            noun TOPONYMY</p>
+      </div>
+  </div>
+
+  <!-- Gallery item 5 -->
+  <div class="gallery-item" id="item5">
+    <img src="./img/inspiration/2c951197b10c0022f1a7.png" alt="Look 5" width="200">
+      <div class="text-box">
+          <p>... a small triangular bone at the base of the
+            spinal column in humans and some apes,
+            formed of fused vestigial vertebrae...</p>
+      </div>
+  </div>
+
+  <!-- Gallery item 6 -->
+  <div class="gallery-item" id="item6">
+    <img src="./img/inspiration/Weixin Image_20241028144613.jpg" alt="Look 6" width="220">
+      <div class="text-box">
+          <p>...Sandy means ‘Sand Island’, The Saxon
+            people used their word ‘ey’ to mean
+            places partly surrounded by water, not just
+            completely surrounded as we might think a
+            true island to be...</p>
+      </div>
+  </div>
+
+  <!-- Gallery item 7 -->
+  <div class="gallery-item" id="item7">
+    <img src="./img/inspiration/Soleus.jpg" alt="Look 7" width="220">
+      <div class="text-box">
+          <p>Hellespont
+            noun TOPONYMY</p>
+      </div>
+  </div>
+
+  <!-- Gallery item 8 -->
+  <div class="gallery-item" id="item8">
+    <img src="./img/inspiration/Sutton-Hoo-IC097_001_web.jpg" alt="Look 8" width="220">
+      <div class="text-box">
+          <p>According to an ancient Greek legend, first
+            told by Pindar and Aeschylus, the Hellespont
+            was named for a girl named Helle. </p>
+      </div>
+  </div>
+
+    <!-- Gallery item 9 -->
+    <div class="gallery-item" id="item8">
+        <img src="./img/inspiration/1546444305476.jpeg" alt="Look 8" width="220">
+          <div class="text-box">
+              <p>...a broad muscle in the lower calf, below
+                the gastrocnemius, which flexes the foot to
+                point the toes downwards...</p>
+          </div>
+      </div>
+
+
+
+
+<script>
+
+  
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all gallery items (including image items) and text boxes
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const textBoxes = document.querySelectorAll('.text-box');
+
+    // Set up the initial random positions for the items
+    setInitialPositions(galleryItems);
+    setInitialPositions(textBoxes);
+
+    // Add drag functionality to both gallery items (images) and text boxes
+    galleryItems.forEach(item => {
+        item.addEventListener('mousedown', handleDragStart);
+    });
+    textBoxes.forEach(text => {
+        text.addEventListener('mousedown', handleDragStart);
+    });
+});
+
+// Function to set initial random positions for the elements (gallery items and text boxes)
+function setInitialPositions(elements) {
+    elements.forEach(item => {
+        // Random left position for the element (40% of viewport width)
+        const randomLeft = Math.random() * 50;
+
+        // Random top position with scrollHeight + 600 to allow more space for placement
+        const randomTop = Math.random() * (document.documentElement.scrollHeight + 1100);
+
+        // Set random position and opacity for gallery items and text boxes
+        item.style.left = `calc(${randomLeft}vw)`;
+        item.style.top = `${randomTop}px`;
+        item.style.setProperty('--random-left', `${randomLeft}vw`);
+        item.style.setProperty('--random-top', `${randomTop}px`);
+
+        // Trigger fade-in effect after a short delay
+        setTimeout(() => {
+            item.style.opacity = 1;
+        }, 100);
+    });
+}
+
+// Variables to track dragging state
+let activeItem = null;
+let offsetX, offsetY;
+
+// Function to start dragging an item (gallery item or text box)
+function handleDragStart(event) {
+    activeItem = event.currentTarget;
+    const rect = activeItem.getBoundingClientRect();
+    offsetX = event.clientX - rect.left;
+    offsetY = event.clientY - rect.top;
+
+    // Disable transition during dragging
+    activeItem.style.transition = 'none';
+    activeItem.style.cursor = 'grabbing';
+
+    // Add mousemove and mouseup event listeners
+    document.addEventListener('mousemove', handleDrag);
+    document.addEventListener('mouseup', handleDragEnd);
+}
+
+// Function to handle the dragging process
+function handleDrag(event) {
+    if (!activeItem) return;
+
+    // Calculate the new position
+    const newX = event.clientX - offsetX;
+    const newY = event.clientY - offsetY;
+
+    // Update the position of the active item
+    activeItem.style.left = `${newX}px`;
+    activeItem.style.top = `${newY}px`;
+}
+
+// Function to end the dragging process
+function handleDragEnd() {
+    if (!activeItem) return;
+
+    // Re-enable transition and reset cursor style
+    activeItem.style.transition = 'left 0.2s ease, top 0.2s ease';
+    activeItem.style.cursor = 'grab';
+
+    // Remove the mousemove and mouseup event listeners
+    document.removeEventListener('mousemove', handleDrag);
+    document.removeEventListener('mouseup', handleDragEnd);
+
+    // Optionally, you can perform additional actions like saving the final position
+    // activeItem = null; // Reset the active item if needed
+}
+
+
+
+</script>
+
+</body>
+</html>
+
